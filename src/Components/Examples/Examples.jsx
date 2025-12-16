@@ -2,6 +2,8 @@ import TabButton from '../TabButton/TabButton.jsx';
 import {CORE_CONCEPTS} from '../../data.js';
 import { EXAMPLES } from '../../data.js';
 import { useState } from 'react';
+import Section from '../Section/Section.jsx';
+import Taps from '../Taps/Taps.jsx';
 
 export default function Examples (){
 const [selectedTopic, setSelectedTopic]= useState()
@@ -23,19 +25,25 @@ if(selectedTopic){
     )
 }
 return <>
-<section id='examples'>
-    <h2>Examples</h2>
-    <menu>
+<Section title={"Examples"} id='examples'>
+    <Taps 
+    buttons={ <>        
         {CORE_CONCEPTS.map(({title})=> 
             <TabButton key={title}
-                onSelect ={()=> handleSelect (title)}
+                onClick ={()=> handleSelect (title)}
                 isSelected = {selectedTopic === title} 
                 >
                 {title}
             </TabButton>
         )}
-    </menu>
+        </>
+    }>
+
+    </Taps>
+    
+ 
+   
     {tabContent}
-</section>
+</Section>
 </>
 }
